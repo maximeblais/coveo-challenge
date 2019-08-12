@@ -1,13 +1,10 @@
-import os
-import json
 from flask import Flask
 from geosuggest.geodb import GeoDB
-
-db = GeoDB(file_path=os.path.dirname(os.path.abspath(__file__)) + '/data/cities_canada-usa.tsv', csv_dialect='excel-tab')
+from .blueprints import default, suggestions
 
 
 def create_app(test_config=None):
-    app = Flask(__name__, instance_relative_config=True)
+    app = Flask(__name__, instance_relative_config=True, template_folder='templates')
     app.config.from_mapping(
         SECRET_KEY='dev'
     )
@@ -17,5 +14,8 @@ def create_app(test_config=None):
         app.config.from_pyfile('config.py', silent=True)
     else:
         app.config.from_mapping(test_config)
+
+    app.register_blueprint(default.bp)
+    app.register_blueprint(suggestions.bp)
 
     return app
