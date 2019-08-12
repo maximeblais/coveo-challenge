@@ -51,7 +51,7 @@ class GeoRecord:
         self.modification_date = datetime.strptime(data_or_none('modified_at'), '%Y-%m-%d').isoformat()\
             if len(row['modified_at']) > 0 else None
 
-    def as_json(self, simple: bool) -> dict:
+    def to_dict(self, simple: bool) -> dict:
         basic = {
             "name": self.name + ", " + self.admin1 + ", " + self.country,
             "latitude": self.latitude,

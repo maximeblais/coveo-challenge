@@ -1,6 +1,7 @@
 from flask import Flask
 from geosuggest.geodb import GeoDB
-from .blueprints import default, suggestions
+from .api.blueprints import base, suggestions
+from .api.errors import InvalidQuery
 
 
 def create_app(test_config=None):
@@ -15,7 +16,8 @@ def create_app(test_config=None):
     else:
         app.config.from_mapping(test_config)
 
-    app.register_blueprint(default.bp)
+    app.register_blueprint(base.bp)
     app.register_blueprint(suggestions.bp)
+
 
     return app
