@@ -109,8 +109,8 @@ class GeoDB:
         candidates = [point for point in self.geo_points if pattern.match(point.name)]
         candidates += [point for point in self.geo_points if pattern.match(point.ascii_name)
                        and point not in candidates]
-        candidates += [point for point in self.geo_points if match_in_list(point.alternate_names, pattern)
-                       and point not in candidates]
+        #candidates += [point for point in self.geo_points if match_in_list(point.alternate_names, pattern)
+        #              and point not in candidates]
         return candidates
 
 

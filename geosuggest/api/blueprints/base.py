@@ -1,5 +1,4 @@
-from flask import Blueprint, render_template, jsonify
-from ..errors import InvalidQuery
+from flask import Blueprint, render_template
 
 bp = Blueprint('default', __name__)
 
