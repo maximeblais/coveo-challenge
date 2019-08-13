@@ -19,5 +19,4 @@ def create_app(test_config=None):
     app.register_blueprint(base.bp)
     app.register_blueprint(suggestions.bp)
 
-
     return app
