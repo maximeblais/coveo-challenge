@@ -1,7 +1,9 @@
 from http import HTTPStatus
 
 
+# Custom exception for invalid queries
 class InvalidQuery(Exception):
+    # Default status code assuming bad request
     status_code = HTTPStatus.BAD_REQUEST
 
     def __init__(self, message, status_code=None, payload=None):
