@@ -1,4 +1,5 @@
 from datetime import datetime
+from .api.errors import InvalidQuery
 import os
 import re
 import csv
@@ -105,7 +106,10 @@ class GeoDB:
             return False
 
         prefix = prefix.strip()
-        pattern = re.compile(prefix, re.IGNORECASE)
+        try:
+            pattern = re.compile(prefix, re.IGNORECASE)
+        except re.error:
+            raise InvalidQuery("{prefix} is not a valid search term".format(prefix=prefix))
         candidates = [point for point in self.geo_points if pattern.match(point.name)]
         candidates += [point for point in self.geo_points if pattern.match(point.ascii_name)
                        and point not in candidates]

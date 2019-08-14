@@ -42,44 +42,37 @@ def suggest():
 
     # Find potential candidates and calculate their score
     candidates = db.find_by_name(place)
-    suggestions = to_weighted_results(place, candidates, latitude, longitude)
-
-    # Order suggestions by score from highest to lowest
-    suggestions = sorted(suggestions, key=lambda sugg: sugg['score'], reverse=True)
+    suggestions = sorted(evaluate(place, candidates, latitude, longitude), key=lambda sugg: sugg['score'], reverse=True)
 
     return jsonify(suggestions=suggestions)
 
 
-def to_weighted_results(place: str, candidates: [GeoRecord], latitude: float = None, longitude: float = None) -> [dict]:
+def evaluate(place: str, candidates: [GeoRecord], latitude: float = None, longitude: float = None) -> [dict]:
     # If there are no potential candidates, return immediately (implicitly returning [])
     if len(candidates) == 0:
         return candidates
 
     evaluate_distance = True if latitude or longitude else False
 
-    # Name similarity is given a weight of 60% of the candidate score, nearness 40%
+    # Name similarity is given a weight of 60% of the candidate score, proximity 40%
     weights = {
         'name': 0.6,
-        'nearness': 0.4,
+        'proximity': 0.4,
     }
 
-    suggestions = []
-
-    # Evaluate each candidate score according to name similarity and nearness
+    # Evaluate each candidate score according to name similarity and proximity
     for candidate in candidates:
         candidate_score = get_name_score(place, candidate, weights['name'])
         if evaluate_distance:
             if candidate.latitude == latitude and candidate.longitude == longitude:
                 candidate_score = 1
             else:
-                candidate_score += get_nearness_score(latitude, longitude, candidate, weights['nearness'])
+                candidate_score += get_proximity_score(latitude, longitude, candidate, weights['proximity'])
         else:
-            candidate_score += weights['nearness']
+            candidate_score += weights['proximity']
 
-        # Combine candidate and calculated score then append it to [suggestions]
-        suggestions.append({**candidate.to_dict(simple=True), "score": candidate_score})
-
-    return suggestions
+        # Combine candidate and calculated score and yield dict
+        yield {**candidate.to_dict(simple=True), "score": float('%.2f' % candidate_score)}
 
 
 def get_name_score(place: str, candidate: GeoRecord, weight) -> float:
@@ -90,7 +83,7 @@ def get_name_score(place: str, candidate: GeoRecord, weight) -> float:
     return max([score.ratio() for score in scores]) * weight
 
 
-def get_nearness_score(latitude: float, longitude: float, candidate: GeoRecord, weight: float) -> float:
+def get_proximity_score(latitude: float, longitude: float, candidate: GeoRecord, weight: float) -> float:
     canada_us_diameter = 6430  # approximate, in km
 
     # Evaluate distance between user supplied coordinates and candidate

@@ -1,1 +1,19 @@
-Home !
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1>GeoSuggest</h1>
+        <p>A RESTful API that provides suggestions for cities</p>
+        <h2>Examples:</h2>
+        <ul>
+            <li><a href="{{ url_for('suggestions.suggest', q='Sherbrooke') }}">GET /suggestions?q=Sherbrooke</a> (single result)</li>
+            <li><a href="{{ url_for('suggestions.suggest', q='New') }}">GET /suggestions?q=New</a> (multiple results)</li>
+            <li><a href="{{ url_for('suggestions.suggest', q='SomeRandomCityInTheMiddleOfNowhere') }}">GET /suggestions?q=SomeRandomCityInTheMiddleOfNowhere</a> (no result)</li>
+            <li><a href="{{ url_for('suggestions.suggest', q='New', latitude='39.68372', longitude=-75.74966) }}">GET /suggestions?q=New&latitude=39.68372&longitude=-75.74966</a> (multiple results, exact location)</li>
+            <li><a href="{{ url_for('suggestions.suggest', q='Londo', latitude='43.70011', longitude=-79.4163) }}">GET /suggestions?q=Londo&latitude=43.70011&longitude=-79.4163</a> (multiple results, near match)</li>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}
