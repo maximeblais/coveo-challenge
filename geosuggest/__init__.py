@@ -5,22 +5,20 @@ from .api.errors import InvalidQuery
 from .config import *
 
 
-def create_app(test_config=None):
+def create_app(testing=False, additional_config=None):
     app = Flask(__name__, template_folder='templates')
 
-    # Load appropriate config according to FLASK_ENV env var
-    if app.config['ENV'] == 'development':
-        configuration = DevelopmentConfig()
-    elif app.config['ENV'] == 'testing':
+    if testing:
         configuration = TestingConfig()
+    elif app.config['ENV'] == 'development':
+        configuration = DevelopmentConfig()
     else:
         configuration = ProductionConfig()
 
     app.config.from_object(configuration)
 
-    # Override values with supplied test_config
-    if test_config is not None:
-        app.config.from_mapping(test_config)
+    if additional_config:
+        app.config.from_mapping(additional_config)
 
     app.register_blueprint(base.bp)
     app.register_blueprint(suggestions.bp)

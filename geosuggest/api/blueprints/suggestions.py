@@ -1,9 +1,6 @@
-from flask import Blueprint, request, jsonify
-from geopy import distance
-from difflib import SequenceMatcher
-from geosuggest.geodb import db, GeoRecord
+from flask import Blueprint, request, jsonify, render_template
 from ..errors import InvalidQuery
-
+from ..controllers import SuggestionController
 
 bp = Blueprint('suggestions', __name__, url_prefix='/suggestions')
 
@@ -15,20 +12,18 @@ def handle_invalid_query(error):
     response.status_code = error.status_code
     return response
 
-# Main route for suggestions
-# Required: q
-# Optional: latitude & longitude
-# Usage: GET /suggestions?q=<search_term>&latitude=<float>&longitude=<float>
-@bp.route('/', methods=['GET'])
-def suggest():
-    # Get required and optional arguments from query
-    place = request.args.get('q')
-    latitude = request.args.get('latitude')
-    longitude = request.args.get('longitude')
 
-    # Validate query
+def sanitize_suggestions_parameters(req):
+    # Get required and optional arguments from query
+    place = req.args.get('q')
+    latitude = req.args.get('latitude')
+    longitude = req.args.get('longitude')
+    viz = req.args.get('visualize')
+
     if place is None:
         raise InvalidQuery("The 'q' (partial or full name) parameter must be present.")
+    else:
+        place = place.strip()
     if (latitude or longitude) and (not latitude or not longitude):
         raise InvalidQuery("The 'latitude' and 'longitude' parameters must be used together.")
 
@@ -38,59 +33,37 @@ def suggest():
             latitude = float(latitude)
             longitude = float(longitude)
         except ValueError:
-            raise InvalidQuery("The 'latitude' and 'longitude' parameters must be valid floating-point numbers")
+            raise InvalidQuery("The 'latitude' and 'longitude' parameters must be in decimal notation")
 
-    # Find potential candidates and calculate their score
-    candidates = db.find_by_name(place)
-    suggestions = sorted(evaluate(place, candidates, latitude, longitude), key=lambda sugg: sugg['score'], reverse=True)
+    if latitude is not None:
+        if not (-90 <= latitude <= 90 and -180 <= longitude <= 180):
+            raise InvalidQuery("Invalid latitude/longitude. Valid values are [-90,90] and [-180,180] respectively.")
 
-    return jsonify(suggestions=suggestions)
-
-
-def evaluate(place: str, candidates: [GeoRecord], latitude: float = None, longitude: float = None) -> [dict]:
-    # If there are no potential candidates, return immediately (implicitly returning [])
-    if len(candidates) == 0:
-        return candidates
-
-    evaluate_distance = True if latitude or longitude else False
-
-    # Name similarity is given a weight of 60% of the candidate score, proximity 40%
-    weights = {
-        'name': 0.6,
-        'proximity': 0.4,
-    }
-
-    # Evaluate each candidate score according to name similarity and proximity
-    for candidate in candidates:
-        candidate_score = get_name_score(place, candidate, weights['name'])
-        if evaluate_distance:
-            if candidate.latitude == latitude and candidate.longitude == longitude:
-                candidate_score = 1
-            else:
-                candidate_score += get_proximity_score(latitude, longitude, candidate, weights['proximity'])
+    if viz:
+        if viz.lower() in ['yes', 'true', '1']:
+            viz = True
+        elif viz.lower() in ['no', 'false', '0']:
+            viz = False
         else:
-            candidate_score += weights['proximity']
+            raise InvalidQuery("The 'viz' parameter must a value in: ['yes', 'no', 'true', 'false', '0', '1']")
+    else:
+        viz = False
 
-        # Combine candidate and calculated score and yield dict
-        yield {**candidate.to_dict(simple=True), "score": float('%.2f' % candidate_score)}
-
-
-def get_name_score(place: str, candidate: GeoRecord, weight) -> float:
-    # Evaluate string similarity between user query and candidate's name and ascii_name
-    scores = [SequenceMatcher(a=place, b=candidate.name), SequenceMatcher(a=place, b=candidate.ascii_name)]
-
-    # Return the highest ratio of similarity, rebalanced on a scale of [0, weight]
-    return max([score.ratio() for score in scores]) * weight
+    return place, latitude, longitude, viz
 
 
-def get_proximity_score(latitude: float, longitude: float, candidate: GeoRecord, weight: float) -> float:
-    canada_us_diameter = 6430  # approximate, in km
+# Main route for suggestions
+# Required: q
+# Optional: latitude, longitude & viz
+# Usage: GET /suggestions?q=<search_term>&latitude=<float>&longitude=<float>&viz=<truthy/falsy>
+@bp.route('/', methods=['GET'])
+def suggest():
+    place, latitude, longitude, viz = sanitize_suggestions_parameters(request)
 
-    # Evaluate distance between user supplied coordinates and candidate
-    position = (latitude, longitude)
-    candidate_position = (candidate.latitude, candidate.longitude)
-    distance_between = distance.distance(position, candidate_position).kilometers
-    # Translate from scale [0, canada_us_diameter] to [0, weight]
-    score = weight - ((distance_between * weight) / canada_us_diameter)
+    result = SuggestionController.get_suggestions(place, latitude, longitude)
 
-    return score
+    if viz:
+        return render_template('visualize.html', title='Visualization',
+                               markers=result, search_term=place, latitude=latitude, longitude=longitude)
+    else:
+        return jsonify(suggestions=result)

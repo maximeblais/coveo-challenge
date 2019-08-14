@@ -5,51 +5,65 @@ import re
 import csv
 
 
+def data_or_none(row, field: str, as_type: type = str, split_on: str = None):
+    field_data = row.get(field, '')
+    if len(field_data) <= 0:
+        return None
+    try:
+        if split_on:
+            field_data = field_data.split(split_on)
+            return [(lambda el: as_type(el))(elem) for elem in field_data]
+        else:
+            return as_type(field_data)
+    except TypeError as e:
+        raise Exception("Error converting data from field {field} to type '{type}'. Reason: {message}"
+                        .format(field=field, type=as_type.__name__, message=str(e)))
+
+
+def fips_to_iso(fips_code: int):
+    mapping = {
+        1: 'AB', 2: 'BC', 3: 'MB', 4: 'NB', 5: 'NL',
+        7: 'NS', 8: 'ON', 9: 'PE', 10: 'QC', 11: 'SK',
+        12: 'YT', 13: 'NT', 14: 'NU'
+    }
+    try:
+        return mapping[fips_code]
+    except KeyError:
+        print("FIPS code {code} has no ISO3166-2 equivalent".format(code=fips_code))
+        return None
+
+
+def match_in_list(items, match_pattern):
+    if (not isinstance(items, list)) or len(items) == 0:
+        return False
+
+    for item in items:
+        if match_pattern.match(item):
+            return True
+
+    return False
+
+
 class GeoRecord:
     def __init__(self, row):
-        def data_or_none(field: str, as_type: type = str, split_on: str = None):
-            field_data = row.get(field, '')
-            if len(field_data) <= 0:
-                return None
-            try:
-                if split_on:
-                    field_data = field_data.split(split_on)
-                    return [(lambda el: as_type(el))(elem) for elem in field_data]
-                else:
-                    return as_type(field_data)
-            except ValueError as e:
-                print("Error converting data from field {field} to type '{type}'. Reason: {message}"
-                      .format(field=field, type=as_type.__name__, message=str(e)))
-
-        def fips_to_iso(fips_code: int):
-            mapping = {
-                1: 'AB', 2: 'BC', 3: 'MB', 4: 'NB', 5: 'NL',
-                7: 'NS', 8: 'ON', 9: 'PE', 10: 'QC', 11: 'SK',
-                12: 'YT', 13: 'NT', 14: 'NU'
-            }
-            try:
-                return mapping[fips_code]
-            except KeyError:
-                print("FIPS code {code} has no ISO3166-2 equivalent".format(code=fips_code))
-
-        self.name = data_or_none('name')
-        self.ascii_name = data_or_none('ascii')
-        self.alternate_names = data_or_none('alt_name', split_on=',')
-        self.latitude = data_or_none('lat', as_type=float)
-        self.longitude = data_or_none('long', as_type=float)
-        self.feature_class = data_or_none('feat_class')
-        self.feature_code = data_or_none('feat_code')
-        self.country = data_or_none('country')
-        self.alternate_country_codes = data_or_none('cc2', split_on=',')
-        self.admin1 = fips_to_iso(int(data_or_none('admin1'))) if self.country == "CA" else data_or_none('admin1')
-        self.admin2 = data_or_none('admin2')
-        self.admin3 = data_or_none('admin3')
-        self.admin4 = data_or_none('admin4')
-        self.population = data_or_none('population', as_type=int)
-        self.elevation = data_or_none('elevation', as_type=int)
-        self.digital_elevation_model = data_or_none('dem', as_type=int)
-        self.timezone = data_or_none('tz')
-        self.modification_date = datetime.strptime(data_or_none('modified_at'), '%Y-%m-%d').isoformat()\
+        self.name = data_or_none(row, field='name')
+        self.ascii_name = data_or_none(row, field='ascii')
+        self.alternate_names = data_or_none(row, field='alt_name', split_on=',')
+        self.latitude = data_or_none(row, field='lat', as_type=float)
+        self.longitude = data_or_none(row, field='long', as_type=float)
+        self.feature_class = data_or_none(row, field='feat_class')
+        self.feature_code = data_or_none(row, field='feat_code')
+        self.country = data_or_none(row, field='country')
+        self.alternate_country_codes = data_or_none(row, field='cc2', split_on=',')
+        self.admin1 = fips_to_iso(int(data_or_none(row, field='admin1'))) if self.country == "CA" else data_or_none(row, field='admin1')
+        self.admin2 = data_or_none(row, field='admin2')
+        self.admin3 = data_or_none(row, field='admin3')
+        self.admin4 = data_or_none(row, field='admin4')
+        self.population = data_or_none(row, field='population', as_type=int)
+        self.elevation = data_or_none(row, field='elevation', as_type=int)
+        self.digital_elevation_model = data_or_none(row, field='dem', as_type=int)
+        self.timezone = data_or_none(row, field='tz')
+        self.modification_date = datetime.strptime(data_or_none(row, field='modified_at'), '%Y-%m-%d').isoformat()\
             if len(row['modified_at']) > 0 else None
 
     def to_dict(self, simple: bool) -> dict:
@@ -84,6 +98,10 @@ class GeoRecord:
 class GeoDB:
     def __init__(self, file_path: str, csv_dialect: str = 'excel-tab'):
         self.geo_points = []
+
+        if not os.path.exists(file_path):
+            raise FileNotFoundError("{path} does not exist".format(path=file_path))
+
         with open(file_path, encoding='utf8') as file:
             reader = csv.DictReader(file, dialect=csv_dialect, quoting=csv.QUOTE_NONE)
             for row in reader:
@@ -95,17 +113,9 @@ class GeoDB:
                         .format(id=row['id'], message=str(e)))
 
     def find_by_name(self, prefix: str):
-        def match_in_list(items, match_pattern):
-            if (not isinstance(items, list)) or len(items) == 0:
-                return False
-
-            for item in items:
-                if match_pattern.match(item):
-                    return True
-
-            return False
-
         prefix = prefix.strip()
+        regex_characters = ['*', '.', '[', ']', '\\', '/']
+        prefix = ''.join(c for c in prefix if c.isalnum() or c not in regex_characters)
         try:
             pattern = re.compile(prefix, re.IGNORECASE)
         except re.error:

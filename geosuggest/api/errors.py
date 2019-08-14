@@ -15,5 +15,6 @@ class InvalidQuery(Exception):
 
     def to_dict(self):
         result = dict(self.payload or ())
+        result['status_code'] = self.status_code
         result['message'] = self.message
         return result

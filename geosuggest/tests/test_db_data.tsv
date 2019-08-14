@@ -1,0 +1,101 @@
+id	name	ascii	alt_name	lat	long	feat_class	feat_code	country	cc2	admin1	admin2	admin3	admin4	population	elevation	dem	tz	modified_at
+5881791	Abbotsford	Abbotsford	Abbotsford,YXX,Абботсфорд	49.05798	-122.25257	P	PPL	CA		2	5957659			151683		114	America/Vancouver	2013-04-22
+5882142	Acton Vale	Acton Vale		45.65007	-72.56582	P	PPL	CA		10	16			5135		90	America/Montreal	2008-04-11
+5882799	Airdrie	Airdrie	Erdri,ai er de li,ayrdray,ayrdry,eeodeuli,Ердри,إيردراي,ائرڈرائ,ایردری,艾尔德里,에어드리	51.30011	-114.03528	P	PPL	CA		1				24673		1086	America/Edmonton	2008-04-11
+5882873	Ajax	Ajax	Adzhaks,Ehjdzhaks,Ejdzaks,ajaks, awntaryw,eijegseu,Аджакс,Ејџакс,Эйджакс,أجاكس، أونتاريو,에이젝스	43.85012	-79.03288	P	PPL	CA		8				90167		97	America/Toronto	2011-12-30
+5884083	Alma	Alma	Al'ma,Alma,YTF,alma,alma, kbk,alma, kybk,Алма,Альма,آلما,آلما، کبک,ألما، كيبك	48.55009	-71.6491	P	PPL	CA		10	2			29526		90	America/Montreal	2010-01-29
+4151366	Clewiston	Clewiston	Kluston,ke lai wei si dun,klwstwn, flwryda,klwystwn, flwryda,Клустон,كلوستون، فلوريدا,کلویستون، فلوریدا,克莱维斯顿	26.75423	-80.93368	P	PPL	US		FL	51			7155	5	10	America/New_York	2011-05-14
+4151440	Cocoa	Cocoa	COI,Koko,ke ke,kwkaw, flwryda,kwkw, flwryda,Коко,كوكاو، فلوريدا,کوکو، فلوریدا,可可	28.38612	-80.742	P	PPL	US		FL	9			17140	11	19	America/New_York	2011-05-14
+4151441	Cocoa Beach	Cocoa Beach		28.32001	-80.60755	P	PPL	US		FL	9			11231	0	3	America/New_York	2011-05-14
+4151455	Coconut Creek	Coconut Creek		26.25175	-80.17894	P	PPL	US		FL	11			52909	2	11	America/New_York	2011-05-14
+4151460	Coconut Grove	Coconut Grove		25.7126	-80.25699	P	PPL	US		FL	86			20076	4	15	America/New_York	2012-07-03
+4151607	Combee Settlement	Combee Settlement		28.05835	-81.90536	P	PPL	US		FL	105			5577	41	50	America/New_York	2011-05-14
+4151745	Conway	Conway	Konvej,Конвей	28.50278	-81.33062	P	PPL	US		FL	95			13467	33	36	America/New_York	2011-05-14
+4151824	Cooper City	Cooper City		26.05731	-80.27172	P	PPL	US		FL	11			28547	2	9	America/New_York	2011-05-14
+4151871	Coral Gables	Coral Gables	Koral Gejbls,Koral-Gejblz,ke lei er gai bu er si,koleolgeibeuljeu,kwral ghyblz, flwryda,kwral gyblz, flwryda,Корал Гејблс,Корал-Ґейблз,كورال غيبلز، فلوريدا,کورال گیبلز، فلوریدا,科勒尔盖布尔斯,코럴게이블즈	25.72149	-80.26838	P	PPL	US		FL	86			46780	3	11	America/New_York	2011-05-14
+4151909	Coral Springs	Coral Springs	Coral Springs,Koral Springs,Koral-Springs,ke lei er si pu lin si,koleolseupeulingseu,korarusupuringusu,kwral aspryngz, flwryda,kwral sbrnghz, flwryda,Корал Спрингс,Корал-Спрингс,Корал-Спрінгс,كورال سبرنغز، فلوريدا,کورال اسپرینگز، فلوریدا,コーラルスプリングス,科勒爾斯普林斯,코럴스프링스	26.27119	-80.2706	P	PPL	US		FL	11			121096	3	4	America/New_York	2011-05-14
+4151921	Coral Terrace	Coral Terrace		25.74593	-80.3045	P	PPL	US		FL	86			24376	1	10	America/New_York	2011-05-14
+4152064	Country Walk	Country Walk		25.63399	-80.43228	P	PPL	US		FL	86			15997	2	7	America/New_York	2011-05-14
+4152093	Country Club	Country Club		25.94815	-80.317	P	PPL	US		FL	86			47105	1	6	America/New_York	2011-05-14
+4152311	Crestview	Crestview	CEW,Krestvju,ke lei si te wei,krystfyw, flwryda,Крествју,كريستفيو، فلوريدا,کرست‌ویو، فلوریدا,克雷斯特韦	30.76213	-86.57051	P	PPLA2	US		FL	91			20978	72	77	America/Chicago	2011-05-14
+4152472	Crystal Lake	Crystal Lake		28.03558	-81.90841	P	PPL	US		FL	105			5514	45	49	America/New_York	2011-05-14
+4152564	Cutler	Cutler		25.6151	-80.31061	P	PPL	US		FL	86			18117	3	11	America/New_York	2006-01-17
+6534203	L'Ancienne-Lorette	L'Ancienne-Lorette		46.79392	-71.35191	P	PPL	CA		10				16516		27	America/Montreal	2010-09-22
+6545023	Edmundston	Edmundston	Edmundston,Ehdmundston,edomonsuton,Едмундстон,Эдмундстон,اڈمنڈسٹن,エドモンストン	47.3737	-68.32512	P	PPL	CA		4				16643	200	154	America/Moncton	2010-09-22
+6639619	Sainte Catherine de la Jacques Cartier	Sainte Catherine de la Jacques Cartier		46.85244	-71.62056	P	PPL	CA		10	3			5021		159	America/Montreal	2010-09-23
+6690232	Baie-Saint-Paul	Baie-Saint-Paul		47.44109	-70.49858	P	PPL	CA		10	3			7288		7	America/Montreal	2010-09-22
+6696258	Campbellton	Campbellton	kan bei er dun,کیمپبلٹن,坎贝尔顿	48.00751	-66.67272	P	PPL	CA		4	11			7384		9	America/Moncton	2010-09-22
+6696259	Bathurst	Bathurst	Baterst,ZBF,basasuto,Батерст,باتھرسٹ,バサースト	47.61814	-65.65112	P	PPL	CA		4				12714		6	America/Moncton	2013-07-15
+6696260	Matane	Matane	Matan,YME,matan,matan, kybk,Матан,ماتان,ماتان، كيبك,ᒪᑕᓀ	48.82857	-67.52197	P	PPL	CA		10	1			14812		74	America/Montreal	2012-08-27
+6942553	Paris	Paris		43.2	-80.38333	P	PPL	CA		8				11177		255	America/Toronto	2009-06-25
+6943488	Amqui	Amqui	Amkvi,amky,aymkwy,Амкви,آمکی,ایمکوئ,ᐊᒻᕿ	48.46382	-67.43134	P	PPL	CA		10	1			6261		161	America/Montreal	2010-09-22
+6943811	Chandler	Chandler	XDL	48.34935	-64.67926	P	PPL	CA		10	11			7914		17	America/Montreal	2010-09-23
+6943827	Thetford-Mines	Thetford-Mines		46.09371	-71.30539	P	PPL	CA		10	12			25704		317	America/Montreal	2010-09-23
+6944113	Mont-Joli	Mont-Joli	Mon Zholi,Mont-Joli,YYY,mwn-zhwly,Мон Жоли,مون-ژولی	48.58388	-68.19214	P	PPL	CA		10	1			6568		81	America/Montreal	2013-08-17
+6945986	La Malbaie	La Malbaie	La Malbaie,YML	47.654	-70.15268	P	PPL	CA		10	3			8959		39	America/Montreal	2013-08-17
+6945989	Sainte-Marie	Sainte-Marie		46.43401	-71.01168	P	PPL	CA		10	12			11584		159	America/Montreal	2010-09-23
+6945991	Plessisville	Plessisville		46.21856	-71.76201	P	PPL	CA		10	4			6677		163	America/Montreal	2010-09-23
+7280414	Cole Harbour	Cole Harbour		44.67244	-63.47506	P	PPLX	CA		7				20000	50	49	America/Halifax	2010-03-05
+7281931	Okanagan	Okanagan	Okanagan,Okanagan Country,Okanagan Valley,okanagan,オカナガン	50.36386	-119.34997	P	PPLQ	CA		2				297601		598	America/Vancouver	2012-01-17
+7281936	West Kelowna	West Kelowna	District of West Kelowna,West Kelowna,uesutokerouna,u~esutokerouna,ウェストケロウナ,ウエストケロウナ	49.8625	-119.58333	P	PPL	CA		2				28793		484	America/Vancouver	2011-02-19
+7302647	Bellechasse Regional County Municipality	Bellechasse Regional County Municipality	Bellechasse,Bellechasse Regional County Municipality	46.66667	-70.71667	P	PPL	CA		10	12			29570		308	America/Montreal	2010-06-13
+7303783	Sydney Mines	Sydney Mines		46.23669	-60.21767	P	PPL	CA		7				7312	0	18	America/Glace_Bay	2010-07-18
+7303786	Jonquière	Jonquiere	XJQ,Zhonk'er,Жонкьер	48.41648	-71.24884	P	PPL	CA		10	2			54842	146	142	America/Montreal	2013-04-28
+7535681	Saint-Augustin-de-Desmaures	Saint-Augustin-de-Desmaures		46.74064	-71.45131	P	PPL	CA		10	3			17281		78	America/Montreal	2010-09-23
+7535690	Donnacona	Donnacona		46.68042	-71.7239	P	PPL	CA		10	3			5564		60	America/Montreal	2011-06-05
+7602078	Ladner	Ladner		49.08938	-123.08241	P	PPL	CA		2				200000	1	3	America/Vancouver	2010-11-15
+7669012	Walnut Grove	Walnut Grove		49.16473	-122.64042	P	PPLX	CA		2				25683		40	America/Vancouver	2011-02-19
+7669018	Aldergrove	Aldergrove		49.05801	-122.47087	P	PPLX	CA		2				12363		102	America/Vancouver	2011-02-19
+8285452	Ancaster	Ancaster	Ankaster,Анкастер	43.21806	-79.98716	P	PPL	CA		8				33232		253	America/Toronto	2012-05-07
+8354533	Shannon	Shannon	Shannon,YOY	46.88026	-71.51464	P	PPL	CA		10	3			5086		170	America/Montreal	2013-08-17
+8354586	Saint-Henri	Saint-Henri	Saint-Henri-de-Lauzon,Saint-Henri-de-Levis,Saint-Henri-de-Lévis	46.69314	-71.06927	P	PPL	CA		10	12			5023		87	America/Montreal	2013-07-15
+8354587	Saint-Lambert-de-Lauzon	Saint-Lambert-de-Lauzon		46.58624	-71.20892	P	PPL	CA		10	12			6177		131	America/Montreal	2012-08-01
+8379100	Pont-Rouge	Pont-Rouge		46.75468	-71.69566	P	PPL	CA		10	3			8723		104	America/Montreal	2012-08-28
+8379101	Princeville	Princeville		46.17163	-71.87462	P	PPL	CA		10	4			5693		160	America/Montreal	2012-08-28
+8533869	West Vancouver	West Vancouver	West Vancouver	49.36672	-123.16652	P	PPLL	CA		2				42694		750	America/Vancouver	2013-06-05
+8558534	Willowdale	Willowdale	Willowdale	43.76672	-79.39909	P	PPLL	CA		8				79440		182	America/Toronto	2013-07-08
+4046255	Bay Minette	Bay Minette		30.88296	-87.77305	P	PPLA2	US		AL	3			8044	82	85	America/Chicago	2011-05-14
+4046274	Edna	Edna		28.97859	-96.64609	P	PPLA2	US		TX	239			5499	20	24	America/Chicago	2011-05-14
+4046332	Henderson	Henderson	Khenderson,Хендерсон	32.15322	-94.79938	P	PPLA2	US		TX	401			13712	156	160	America/Chicago	2011-05-14
+4046704	Fort Hunt	Fort Hunt		38.73289	-77.05803	P	PPL	US		VA	59			16045	10	16	America/New_York	2011-05-14
+4047906	Trinity	Trinity		28.18085	-82.68177	P	PPL	US		FL	101			10907	6	15	America/New_York	2011-05-14
+4047914	Villas	Villas		26.55035	-81.8687	P	PPL	US		FL	71			11569	3	6	America/New_York	2011-05-14
+4048023	Bessemer	Bessemer	Besemer,Bessemer,bei se mo,beseomeo,bsmr,bysmyr, alabama,Бесемер,Бессемер,بسمر,بيسمير، ألاباما,贝瑟默,베서머	33.40178	-86.95444	P	PPL	US		AL	73			27456	155	161	America/Chicago	2011-05-14
+4048662	Paducah	Paducah	PAH,Paduka,pade~yuka,pdwk, kntaky,peodyuka,Падука,پدوک، کنتاکی,パデューカ,퍼듀카	37.08339	-88.60005	P	PPLA2	US		KY	145			25024	104	104	America/Chicago	2011-05-14
+4048888	Red Chute	Red Chute		32.55598	-93.61323	P	PPL	US		LA	15			6261	65	67	America/Chicago	2011-05-14
+4049032	Jessup	Jessup		39.14927	-76.77525	P	PPL	US		MD	3			7137	63	70	America/New_York	2011-05-14
+4049979	Birmingham	Birmingham	BHM,Birmingem,Birmingham,Birmingham i Alabama,baminguhamu,baminhamu,bo ming han,Бирмингем,Бірмінгем,バーミングハム,バーミンハム,伯明翰	33.52066	-86.80249	P	PPLA2	US		AL	73			212237	187	187	America/Chicago	2011-05-14
+4050006	Delhi Hills	Delhi Hills		39.09284	-84.61272	P	PPL	US		OH	61			5259	266	267	America/New_York	2011-05-14
+4050118	Turpin Hills	Turpin Hills		39.11006	-84.37994	P	PPL	US		OH	61			5099	198	202	America/New_York	2011-05-14
+4050356	Lugoff	Lugoff		34.22737	-80.68925	P	PPL	US		SC	55			7434	80	85	America/New_York	2011-05-14
+4050880	Buda	Buda		30.08521	-97.84028	P	PPL	US		TX	209			7295	214	220	America/Chicago	2011-05-14
+4051059	Boaz	Boaz		34.20065	-86.16637	P	PPL	US		AL	95			9551	325	328	America/Chicago	2011-05-14
+4051714	Brewton	Brewton		31.10518	-87.07219	P	PPLA2	US		AL	53			5408	25	28	America/Chicago	2011-05-14
+4051894	Brook Highland	Brook Highland	Lake Purdy	33.43566	-86.67388	P	PPL	US		AL	117			6746	182	189	America/Chicago	2011-05-15
+4052964	Cahaba Heights	Cahaba Heights		33.464	-86.73193	P	PPL	US		AL	73			5287	196	201	America/Chicago	2006-01-17
+4053050	Calera	Calera		33.1029	-86.7536	P	PPL	US		AL	117			11620	154	156	America/Chicago	2011-05-14
+4054378	Center Point	Center Point		33.64566	-86.6836	P	PPL	US		AL	73			16921	253	256	America/Chicago	2011-05-14
+4054852	Chelsea	Chelsea		33.34011	-86.63026	P	PPL	US		AL	117			10183	156	157	America/Chicago	2011-05-14
+4054996	Chickasaw	Chickasaw		30.7638	-88.07472	P	PPL	US		AL	97			6106	10	14	America/Chicago	2011-05-14
+4055045	Childersburg	Childersburg		33.27817	-86.35498	P	PPL	US		AL	121			5175	128	130	America/Chicago	2011-05-14
+4055577	Clanton	Clanton		32.83874	-86.62943	P	PPLA2	US		AL	21			8619	183	178	America/Chicago	2011-05-14
+4055650	Clay	Clay		33.7026	-86.59971	P	PPL	US		AL	73			9708	285	291	America/Chicago	2011-05-14
+4057835	Cullman	Cullman	Kallmen,Kalman,Kulman,ka er man,karuman,keolmeon,klmn, alabama,kwlman, alabama,Каллмен,Калман,Кулман,Кълман,كولمان، ألاباما,کلمن، آلاباما,کەلمەن، ئەلاباما,カルマン,卡尔曼,컬먼	34.17482	-86.84361	P	PPLA2	US		AL	43			14775	242	244	America/Chicago	2011-05-14
+4058061	Daleville	Daleville		31.31017	-85.71299	P	PPL	US		AL	45			5295	102	108	America/Chicago	2011-05-14
+4058198	Danville	Danville		34.41454	-87.08751	P	PPL	US		AL	103			6242	186	188	America/Chicago	2011-02-23
+4058219	Daphne	Daphne	Dafni,da fu ni,dfny, alabama,dyfny, alabama,Дафни,Дафні,دفنی، آلاباما,ديفني، ألاباما,دەفنی، ئەلاباما,达芙妮	30.60353	-87.9036	P	PPL	US		AL	3			21570	49	56	America/Chicago	2011-05-14
+4058553	Decatur	Decatur	Decatur,Dekejter,Dekejtur,decatur,di kai te,dikeiteo,dykatwr, alabama,dykytr, alabama,Декейтер,Декејтур,ديكاتور، ألاباما,دیکیتر، آلاباما,دیکەیتەر، ئەلاباما,迪凯特,디케이터	34.60593	-86.98334	P	PPLA2	US		AL	103			55683	171	175	America/Chicago	2011-05-14
+4058662	Demopolis	Demopolis	Demopolis,dai mo bo li si,dmwpwlys, alabama,dymwbwlys, alabama,Демополис,Демополіс,دموپولیس، آلاباما,ديموبوليس، ألاباما,دێمۆپۆلیس، ئەلاباما,戴摩波里斯	32.51764	-87.8364	P	PPL	US		AL	91			7483	37	40	America/Chicago	2011-05-14
+4059102	Dothan	Dothan	DHN,Dotan,Dothan,doseon,duo sen,dwthan, alabama,dwthn, alabama,Дотан,دوثان، ألاباما,دوثن، آلاباما,دۆتەن، ئەلاباما,多森,도선	31.22323	-85.39049	P	PPLA2	US		AL	69			65496	98	102	America/Chicago	2011-05-14
+4059870	East Florence	East Florence		34.80953	-87.64947	P	PPL	US		AL	77			35733	167	171	America/Chicago	2006-01-17
+4060791	Enterprise	Enterprise	ETS	31.31517	-85.85522	P	PPL	US		AL	31			26562	108	111	America/Chicago	2011-05-14
+4060954	Eufaula	Eufaula	EUF,Eufala,Jufola,you fu la,ywfla, alabama,ywfwla, alabama,Јуфола,Юфола,يوفولا، ألاباما,یوفلا، آلاباما,یووفۆلا، ئەلاباما,尤福拉	31.89127	-85.14549	P	PPL	US		AL	5			13137	80	83	America/Chicago	2011-05-14
+4061206	Fairfield	Fairfield	Feurfild,Феърфилд	33.48594	-86.91194	P	PPL	US		AL	73			11117	171	182	America/Chicago	2011-05-14
+4061234	Fairhope	Fairhope	Feergoup,Ferkhoup,fei er huo pu,fyrhwb, alabama,fyrhwp, alabama,Ферхоуп,Феєргоуп,فيرهوب، ألاباما,فیرهوپ، آلاباما,فێرھۆپ، ئەلاباما,费尔霍普	30.52297	-87.90333	P	PPL	US		AL	3			15326	37	42	America/Chicago	2011-05-14
+4062577	Florence	Florence	Florencija,Florens,flarns, alabama,flwrns,fu luo lun si,peullolenseu,phlorensa,Флоренс,Флоренция,فلارنس، آلاباما,فلورنس,فلۆرەنس، ئەلاباما,फ्लोरेन्स,弗洛伦斯,플로렌스	34.79981	-87.67725	P	PPLA2	US		AL	77			39319	167	172	America/Chicago	2011-05-14
+4062644	Foley	Foley	Foley,NHX	30.40659	-87.6836	P	PPL	US		AL	3			14618	25	31	America/Chicago	2013-05-11
+4062774	Forestdale	Forestdale		33.57011	-86.89638	P	PPL	US		AL	73			10162	197	200	America/Chicago	2011-05-14
+4062861	Fort Payne	Fort Payne		34.44425	-85.71969	P	PPLA2	US		AL	49			14012	275	278	America/Chicago	2011-05-14
+4063765	Gardendale	Gardendale		33.6601	-86.81277	P	PPL	US		AL	73			13893	207	207	America/Chicago	2011-05-14
+4064310	Glencoe	Glencoe		33.95704	-85.93247	P	PPL	US		AL	55			5160	172	165	America/Chicago	2011-05-14
+5495292	Truth or Consequences	Truth or Consequences	Trjus o Konsegjuensehs,Trut-or-Konsekuehnses,Trut-or-Korsekuenses,Truth and Consequences,Трут-ор-Консекуэнсес,Трюс о Консегюенсэс,トゥルース・オア・コンシクエンシーズ	33.1284	-107.25281	P	PPLA2	US		NM	51			6475	1294	1293	America/Denver	2011-05-14

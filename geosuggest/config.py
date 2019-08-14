@@ -15,11 +15,11 @@ class ProductionConfig(Config):
         return key
 
 
-class DevelopmentConfig(object):
+class DevelopmentConfig(Config):
     DEBUG = True
     SECRET_KEY = 'dev'
 
 
-class TestingConfig(object):
+class TestingConfig(Config):
     TESTING = True
     SECRET_KEY = 'test'
