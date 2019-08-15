@@ -15,7 +15,7 @@ def data_or_none(row, field: str, as_type: type = str, split_on: str = None):
             return [(lambda el: as_type(el))(elem) for elem in field_data]
         else:
             return as_type(field_data)
-    except TypeError as e:
+    except Exception as e:
         raise Exception("Error converting data from field {field} to type '{type}'. Reason: {message}"
                         .format(field=field, type=as_type.__name__, message=str(e)))
 
@@ -68,7 +68,7 @@ class GeoRecord:
 
     def to_dict(self, simple: bool) -> dict:
         basic = {
-            "name": self.name + ", " + self.admin1 + ", " + self.country,
+            "name": "{name}, {admin1}, {country}".format(name=self.name, admin1=self.admin1, country=self.country),
             "latitude": self.latitude,
             "longitude": self.longitude
         }
@@ -115,11 +115,16 @@ class GeoDB:
     def find_by_name(self, prefix: str):
         prefix = prefix.strip()
         regex_characters = ['*', '.', '[', ']', '\\', '/']
-        prefix = ''.join(c for c in prefix if c.isalnum() or c not in regex_characters)
-        try:
-            pattern = re.compile(prefix, re.IGNORECASE)
-        except re.error:
+        clean = ''.join(c for c in prefix if c.isalnum() or c not in regex_characters)
+
+        if len(clean) == 0:
             raise InvalidQuery("{prefix} is not a valid search term".format(prefix=prefix))
+
+        try:
+            pattern = re.compile(clean, re.IGNORECASE)
+        except re.error:
+            raise InvalidQuery("{prefix} is not a valid search term".format(prefix=clean))
+
         candidates = [point for point in self.geo_points if pattern.match(point.name)]
         candidates += [point for point in self.geo_points if pattern.match(point.ascii_name)
                        and point not in candidates]

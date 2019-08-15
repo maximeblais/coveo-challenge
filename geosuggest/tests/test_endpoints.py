@@ -56,3 +56,40 @@ def test_valid_query_q_lat_lon_viz(client):
     assert not is_invalid(response)
     assert b'div id="map"' in response.data
 
+
+def test_invalid_query_lat_lon_not_float(client):
+    params = {
+        'q': 'Sherbrooke',
+        'latitude': 'str',
+        'longitude': 'str'
+    }
+    response = client.get('/suggestions', query_string=params, follow_redirects=True)
+    assert is_invalid(response, is_json=True)
+
+
+def test_invalid_query_lat_lon_invalid_values(client):
+    params = {
+        'q': 'Sherbrooke',
+        'latitude': -1000,
+        'longitude': 1000
+    }
+    response = client.get('/suggestions', query_string=params, follow_redirects=True)
+    assert is_invalid(response, is_json=True)
+
+
+def test_invalid_query_viz_not_valid_option(client):
+    params = {
+        'q': 'Sherbrooke',
+        'visualize': 'wrong_option'
+    }
+    response = client.get('/suggestions', query_string=params, follow_redirects=True)
+    assert is_invalid(response, is_json=True)
+
+
+def test_valid_query_viz_false_value(client):
+    params = {
+        'q': 'Sherbrooke',
+        'visualize': '0'
+    }
+    response = client.get('/suggestions', query_string=params, follow_redirects=True)
+    assert not is_invalid(response, is_json=True)

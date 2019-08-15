@@ -12,9 +12,11 @@ def evaluate(place: str, candidates: [GeoRecord], latitude: float = None, longit
 
     # Name similarity is given a weight of 60% of the candidate score, proximity 40%
     weights = {
-        'name': 0.75,
-        'proximity': 0.25,
+        'name': 0.70,
+        'proximity': 0.30,
     }
+
+    suggestions = []
 
     # Evaluate each candidate score according to name similarity and proximity
     for candidate in candidates:
@@ -27,8 +29,10 @@ def evaluate(place: str, candidates: [GeoRecord], latitude: float = None, longit
         else:
             candidate_score += weights['proximity']
 
-        # Combine candidate and calculated score and yield dict
-        yield {**candidate.to_dict(simple=True), "score": float('%.2f' % candidate_score)}
+        # Combine candidate and calculated score
+        suggestions.append({**candidate.to_dict(simple=True), "score": float('%.2f' % candidate_score)})
+
+    return suggestions
 
 
 def get_name_score(place: str, candidate: GeoRecord, weight) -> float:

@@ -13,6 +13,7 @@ def handle_invalid_query(error):
     return response
 
 
+# Sanitize parameters received from user (validate and clean input)
 def sanitize_suggestions_parameters(req):
     # Get required and optional arguments from query
     place = req.args.get('q')
@@ -20,6 +21,7 @@ def sanitize_suggestions_parameters(req):
     longitude = req.args.get('longitude')
     viz = req.args.get('visualize')
 
+    # Validate required paramters and parameter combinations
     if place is None:
         raise InvalidQuery("The 'q' (partial or full name) parameter must be present.")
     else:
@@ -35,17 +37,21 @@ def sanitize_suggestions_parameters(req):
         except ValueError:
             raise InvalidQuery("The 'latitude' and 'longitude' parameters must be in decimal notation")
 
+    # Validate that lat & lon values are valid for decimal coordinates
     if latitude is not None:
         if not (-90 <= latitude <= 90 and -180 <= longitude <= 180):
             raise InvalidQuery("Invalid latitude/longitude. Valid values are [-90,90] and [-180,180] respectively.")
 
+    # If user supplies the visualization control parameter, validate its value
+    true_values = ['yes', 'true', '1']
+    false_values = ['no', 'false', '0']
     if viz:
-        if viz.lower() in ['yes', 'true', '1']:
+        if viz.lower() in true_values:
             viz = True
-        elif viz.lower() in ['no', 'false', '0']:
+        elif viz.lower() in false_values:
             viz = False
         else:
-            raise InvalidQuery("The 'viz' parameter must a value in: ['yes', 'no', 'true', 'false', '0', '1']")
+            raise InvalidQuery("The 'visualize' parameter must be a value in: " + str(true_values + false_values))
     else:
         viz = False
 
@@ -58,10 +64,13 @@ def sanitize_suggestions_parameters(req):
 # Usage: GET /suggestions?q=<search_term>&latitude=<float>&longitude=<float>&viz=<truthy/falsy>
 @bp.route('/', methods=['GET'])
 def suggest():
+    # First, sanitize user input
     place, latitude, longitude, viz = sanitize_suggestions_parameters(request)
 
+    # Get results from our controller
     result = SuggestionController.get_suggestions(place, latitude, longitude)
 
+    # Render the visualization template if the user wishes to see our nice map, else return boring JSON
     if viz:
         return render_template('visualize.html', title='Visualization',
                                markers=result, search_term=place, latitude=latitude, longitude=longitude)
