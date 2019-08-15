@@ -12,8 +12,8 @@ def evaluate(place: str, candidates: [GeoRecord], latitude: float = None, longit
 
     # Name similarity is given a weight of 60% of the candidate score, proximity 40%
     weights = {
-        'name': 0.70,
-        'proximity': 0.30,
+        'name': 0.6,
+        'proximity': 0.4,
     }
 
     suggestions = []

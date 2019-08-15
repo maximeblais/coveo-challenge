@@ -18,7 +18,7 @@
     <div id="map" style="width: 900px; height: 700px;"></div>
     <script>
         {% if latitude %}
-        let map = L.map('map').setView([{{ latitude }}, {{ longitude }}], 13);
+        let map = L.map('map').setView([{{ latitude }}, {{ longitude }}], 7);
         {% else %}
         let map = L.map('map').setView([45.40008, -71.89908], 13);
         {% endif %}
