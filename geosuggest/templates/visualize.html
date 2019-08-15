@@ -20,7 +20,7 @@
         {% if latitude %}
         let map = L.map('map').setView([{{ latitude }}, {{ longitude }}], 7);
         {% else %}
-        let map = L.map('map').setView([45.40008, -71.89908], 13);
+        let map = L.map('map').setView([45.40008, -71.89908], 7);
         {% endif %}
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',
             {

@@ -1,6 +1,7 @@
 from geosuggest.api.controllers.SuggestionController import get_suggestions
 
 
+# Verify that the suggestions are correctly sorted based on their score, from highest to lowest (reverse order)
 def test_sorted_suggestions():
     place = "Toronto"
     latitude = 43.70011

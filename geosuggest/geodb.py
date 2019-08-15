@@ -5,6 +5,10 @@ import re
 import csv
 
 
+# Receives as input a TSV row, a field name and optionally a destination type and a char/str on which
+# to split the string.
+# Returns the data contained in the field, optionally converted to destination_type
+# Returns None if the field does not exist or is empty
 def data_or_none(row, field: str, as_type: type = str, split_on: str = None):
     field_data = row.get(field, '')
     if len(field_data) <= 0:
@@ -20,6 +24,7 @@ def data_or_none(row, field: str, as_type: type = str, split_on: str = None):
                         .format(field=field, type=as_type.__name__, message=str(e)))
 
 
+# Converts a Canadian FIPS code to its ISO3166-2 equivalent.
 def fips_to_iso(fips_code: int):
     mapping = {
         1: 'AB', 2: 'BC', 3: 'MB', 4: 'NB', 5: 'NL',
@@ -33,6 +38,7 @@ def fips_to_iso(fips_code: int):
         return None
 
 
+# Tries to match a pattern on each element of a list of str, returns True on first match
 def match_in_list(items, match_pattern):
     if (not isinstance(items, list)) or len(items) == 0:
         return False
@@ -44,6 +50,7 @@ def match_in_list(items, match_pattern):
     return False
 
 
+# A GeoRecord is an object representing the data contained in a row of the GeoName TSV dump.
 class GeoRecord:
     def __init__(self, row):
         self.name = data_or_none(row, field='name')
@@ -66,6 +73,8 @@ class GeoRecord:
         self.modification_date = datetime.strptime(data_or_none(row, field='modified_at'), '%Y-%m-%d').isoformat()\
             if len(row['modified_at']) > 0 else None
 
+    # Returns a dictionary containing the object data.
+    # The 'simple' flag controls the level of information contained in the returned dict.
     def to_dict(self, simple: bool) -> dict:
         basic = {
             "name": "{name}, {admin1}, {country}".format(name=self.name, admin1=self.admin1, country=self.country),
@@ -95,6 +104,7 @@ class GeoRecord:
             return {**basic, **extended}
 
 
+# The GeoDB class represents the collection of GeoRecord taken from the TSV file
 class GeoDB:
     def __init__(self, file_path: str, csv_dialect: str = 'excel-tab'):
         self.geo_points = []
@@ -112,6 +122,7 @@ class GeoDB:
                         "An error occured while processing geographical point with GeoName ID: {id}. Reason: {message}"
                         .format(id=row['id'], message=str(e)))
 
+    # Finds all candidates based on a given prefix
     def find_by_name(self, prefix: str):
         prefix = prefix.strip()
         regex_characters = ['*', '.', '[', ']', '\\', '/']
@@ -128,10 +139,9 @@ class GeoDB:
         candidates = [point for point in self.geo_points if pattern.match(point.name)]
         candidates += [point for point in self.geo_points if pattern.match(point.ascii_name)
                        and point not in candidates]
-        #candidates += [point for point in self.geo_points if match_in_list(point.alternate_names, pattern)
-        #              and point not in candidates]
         return candidates
 
 
+# Our main db instance, for demo purposes, used to simplify data access, instead of using an external DB
 db = GeoDB(file_path=os.path.dirname(os.path.abspath(__file__)) + '/data/cities_canada-usa.tsv',
            csv_dialect='excel-tab')

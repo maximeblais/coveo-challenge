@@ -1,3 +1,4 @@
+# Utility function to test if a response object represents a response to an invalid query
 def is_invalid(response, is_json=False):
 
     if is_json:
@@ -7,16 +8,19 @@ def is_invalid(response, is_json=False):
         return response.status_code != 200
 
 
+# Verify we get a response on our index
 def test_index(client):
     response = client.get('/', follow_redirects=True)
     assert response.status_code == 200
 
 
+# Verify that we dectect and handle an empty query properly
 def test_invalid_query_empty(client):
     response = client.get('/suggestions', follow_redirects=True)
     assert is_invalid(response, is_json=True)
 
 
+# Verify the handling of a query with only latitude specified, without longitude
 def test_invalid_query_q_lat_only(client):
     params = {
         'q': 'Sherbrooke',
@@ -27,6 +31,7 @@ def test_invalid_query_q_lat_only(client):
     assert is_invalid(response, is_json=True)
 
 
+# Verify a valid query with the q parameter only
 def test_valid_query_q_only(client):
     params = {
         'q': 'Sherbrooke'
@@ -35,6 +40,7 @@ def test_valid_query_q_only(client):
     assert not is_invalid(response, is_json=True)
 
 
+# Verify a valid query with q, latitude and longitude
 def test_valid_query_q_lat_lon(client):
     params = {
         'q': 'Sherbrooke',
@@ -45,6 +51,7 @@ def test_valid_query_q_lat_lon(client):
     assert not is_invalid(response, is_json=True)
 
 
+# Verify a valid query with all parameters
 def test_valid_query_q_lat_lon_viz(client):
     params = {
         'q': 'Sherbrooke',
@@ -57,6 +64,7 @@ def test_valid_query_q_lat_lon_viz(client):
     assert b'div id="map"' in response.data
 
 
+# Verify the handling of lat/lon parameters which are not convertible to float
 def test_invalid_query_lat_lon_not_float(client):
     params = {
         'q': 'Sherbrooke',
@@ -67,6 +75,7 @@ def test_invalid_query_lat_lon_not_float(client):
     assert is_invalid(response, is_json=True)
 
 
+# Verify the handling of lat/lon parameters that are not within bounds
 def test_invalid_query_lat_lon_invalid_values(client):
     params = {
         'q': 'Sherbrooke',
@@ -77,6 +86,7 @@ def test_invalid_query_lat_lon_invalid_values(client):
     assert is_invalid(response, is_json=True)
 
 
+# Verify the handling of an invalid 'visualize' parameter value
 def test_invalid_query_viz_not_valid_option(client):
     params = {
         'q': 'Sherbrooke',
@@ -86,6 +96,7 @@ def test_invalid_query_viz_not_valid_option(client):
     assert is_invalid(response, is_json=True)
 
 
+# Verify that we recognize a falsey value in the 'visualize' parameter
 def test_valid_query_viz_false_value(client):
     params = {
         'q': 'Sherbrooke',
