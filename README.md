@@ -1,4 +1,68 @@
-# Coveo Backend Coding Challenge
+This is my submission for the Coveo Backend Coding Challenge.
+
+The app is deployed on Heroku [here](https://coveo-geosuggest.herokuapp.com/)
+
+You can simply access the homepage to see some examples.
+
+### Run the project locally
+
+Requires Python3
+
+```text
+# Clone the repository
+> git clone https://github.com/maximeblais/coveo-challenge.git
+# cd into repo folder
+> cd coveo-challenge
+
+# Create a virtual environment
+> python -m virtualenv venv
+
+# Activate your virtual environment
+# Linux:
+> source venv/bin/activate
+# Windows:
+> .\venv\Scripts\activate
+
+# Install requirements
+> pip install -r requirements.txt
+
+# Set your SECRET_KEY environment variable
+# Linux:
+> export SECRET_KEY=<secret>
+# Windows (cmd):
+> set SECRET_KEY=<secret>
+# Windows (PowerShell)
+> $env:SECRET_KEY = <secret>
+
+# Run the project
+# With werkzeug (Flask default)
+> python run.py
+# With gunicorn (Linux only)
+> gunicorn run:app
+
+# Access http://localhost:5000
+```
+
+### Run tests
+
+```text
+# While in the repo dir
+> coverage run -m pytest
+
+# To see a report of code coverage
+> coverage report -m
+```
+
+
+
+
+
+
+
+# Original challenge description:
+
+## Coveo Backend Coding Challenge
+
 (inspired by https://github.com/busbud/coding-challenge-backend-c)
 
 ## Requirements
