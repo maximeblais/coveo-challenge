@@ -82,7 +82,7 @@ class GeoRecord:
     # The 'simple' flag controls the level of information contained in the returned dict.
     def to_dict(self, simple: bool) -> dict:
 
-        name = self.matched_on.capitalize() if self.matched_on is not None else self.name
+        name = self.matched_on.title() if self.matched_on is not None else self.name
 
         basic = {
             "name": "{name}, {admin1}, {country}".format(name=name, admin1=self.admin1, country=self.country),
