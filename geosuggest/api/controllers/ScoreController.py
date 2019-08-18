@@ -40,6 +40,9 @@ def evaluate(place: str, candidates: [GeoRecord], latitude: float = None, longit
 def get_name_score(place: str, candidate: GeoRecord, weight) -> float:
     # Evaluate string similarity between user query and candidate's name and ascii_name
     scores = [SequenceMatcher(a=place, b=candidate.name), SequenceMatcher(a=place, b=candidate.ascii_name)]
+    if candidate.alternate_names:
+        for alt_name in candidate.alternate_names:
+            scores.append(SequenceMatcher(a=place, b=alt_name))
 
     # Return the highest ratio of similarity, rebalanced on a scale of [0, weight]
     return max([score.ratio() for score in scores]) * weight
@@ -57,4 +60,4 @@ def get_proximity_score(latitude: float, longitude: float, candidate: GeoRecord,
     # Translate from scale [0, canada_us_diameter] to [0, weight]
     score = weight - ((distance_between * weight) / canada_us_diameter)
 
-    return score
+    return score if score >= 0 else 0

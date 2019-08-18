@@ -7,7 +7,7 @@ import os
 # Simple fixture for a lite test database, containing a subset of our real data
 @pytest.fixture
 def testing_db():
-    db = GeoDB(file_path=os.path.dirname(os.path.abspath(__file__)) + '\\test_db_data.tsv',
+    db = GeoDB(file_path=os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_db_data.tsv'),
                csv_dialect='excel-tab')
     return db
 
